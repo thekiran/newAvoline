@@ -2971,7 +2971,21 @@ $(document).ready(function() {
                 });
             }
         };
-        $.getScript("https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit", function() {});
+
+        // $.getScript("https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit", function() {});
+
+        var getScript = function(url) {
+            var s = document.createElement('script');
+            s.async = true;
+            s.src = url;
+            var to = document.getElementsByTagName('script')[0];
+            to.parentNode.insertBefore(s, to);
+        };
+        window.onload = function() {
+            getScript("https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit");
+        }
+
+
         // $.getScript("js/recaptchaConfiguration.js", function() {});
         $.getScript("js/moment-with-locales.min.js", function() {
             $.getScript("js/bootstrap-datetimepicker.min.js", function() {
